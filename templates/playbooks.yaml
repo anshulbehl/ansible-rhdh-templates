@@ -103,7 +103,7 @@ spec:
       action: publish:gitlab
       input:
         allowedHosts:
-          - gitlab-gitlab.apps.cluster-2z84w.sandbox1348.opentlc.com
+          - ${{ parameters.sourceControl }}
         description: ${{ parameters.description }}
         repoUrl: ${{ steps.ansible.output.repoUrl }}
         repoVisibility: 'public'
