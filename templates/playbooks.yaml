@@ -95,7 +95,8 @@ spec:
           description: ${{ parameters.description }}
           collectionGroup: ${{ parameters.collectionGroup }}
           collectionName: ${{ parameters.collectionName }}
-          sourceControl: ${{ parameters.sourceControl }}
+          #sourceControl: ${{ parameters.sourceControl }}
+          sourceControl: 'github.com'
           devSpacesBaseUrl: ${{ steps.ansible.output.devSpacesBaseUrl }}
 
     - id: publish
