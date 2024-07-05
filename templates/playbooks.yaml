@@ -86,7 +86,7 @@ spec:
       name: Generating the Catalog Info Component
       action: fetch:template
       input:
-        url: ../skeletons/catalog-info/
+        url: ../catalog-info/
         values:
           repoUrl: ${{ steps.ansible.output.repoUrl }}
           owner: ${{ parameters.owner }}
@@ -95,8 +95,7 @@ spec:
           description: ${{ parameters.description }}
           collectionGroup: ${{ parameters.collectionGroup }}
           collectionName: ${{ parameters.collectionName }}
-          #sourceControl: ${{ parameters.sourceControl }}
-          sourceControl: 'github.com'
+          sourceControl: ${{ parameters.sourceControl }}
           devSpacesBaseUrl: ${{ steps.ansible.output.devSpacesBaseUrl }}
 
     - id: publish
