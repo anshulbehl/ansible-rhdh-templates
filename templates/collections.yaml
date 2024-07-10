@@ -25,9 +25,9 @@ spec:
           title: Choose source control option
           type: string
           description: Select the source control option
-          default: gitlab-gitlab.apps.cluster-2z84w.sandbox1348.opentlc.com
+          default: gitlab-gitlab.apps.cluster-r7d7j.sandbox2919.opentlc.com
           enum:
-            - gitlab-gitlab.apps.cluster-2z84w.sandbox1348.opentlc.com
+            - gitlab-gitlab.apps.cluster-r7d7j.sandbox2919.opentlc.com
           enumNames:
             - 'GitLab'
         repoOwner:
