@@ -89,7 +89,7 @@ spec:
       input:
         url: ../catalog-info/
         values:
-          repoUrl: {{ '${{ steps.ansible.output.repoUrl }}' }}
+          repoUrl: "{{ '${{ steps.ansible.output.repoUrl }}' }}"
           owner: {{ '${{ parameters.owner }}' }}
           system: {{ '${{ parameters.system }}' }}
           applicationType: collection-project
@@ -106,7 +106,7 @@ spec:
         allowedHosts:
           - {{ '${{ parameters.sourceControl }}' }}
         description: {{ '${{ parameters.description }}' }}
-        repoUrl: {{ '${{ steps.ansible.output.repoUrl }}' }}
+        repoUrl: "{{ '${{ steps.ansible.output.repoUrl }}' }}"
         repoVisibility: 'public'
         defaultBranch: main
 
