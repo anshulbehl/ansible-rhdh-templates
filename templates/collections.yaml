@@ -75,13 +75,13 @@ spec:
       name: Generating the Ansible Source Code Component
       action: ansible:content:create
       input:
-        repoOwner: '${{ parameters.repoOwner }}'
-        repoName: '${{ parameters.repoName }}'
-        description: '${{ parameters.description }}'
-        collectionGroup: '${{ parameters.collectionGroup }}'
-        collectionName: '${{ parameters.collectionName }}'
+        repoOwner:  {{ '${{ parameters.repoOwner }}' }}
+        repoName: {{ '${{ parameters.repoName }}' }}
+        description: {{ '${{ parameters.description }}' }}
+        collectionGroup: {{ '${{ parameters.collectionGroup }}' }}
+        collectionName: {{ '${{ parameters.collectionName }}' }}
         applicationType: collection-project
-        sourceControl: '${{ parameters.sourceControl }}'
+        sourceControl: {{ '${{ parameters.sourceControl }}' }}
 
     - id: catalogTemplate
       name: Generating the Catalog Info Component
@@ -89,24 +89,24 @@ spec:
       input:
         url: ../catalog-info/
         values:
-          repoUrl: ${{ steps.ansible.output.repoUrl }}
-          owner: ${{ parameters.owner }}
-          system: ${{ parameters.system }}
+          repoUrl: {{ '${{ steps.ansible.output.repoUrl }}' }}
+          owner: {{ '${{ parameters.owner }}' }}
+          system: {{ '${{ parameters.system }}' }}
           applicationType: collection-project
-          description: ${{ parameters.description }}
-          collectionGroup: ${{ parameters.collectionGroup }}
-          collectionName: ${{ parameters.collectionName }}
-          sourceControl: ${{ parameters.sourceControl }}
-          devSpacesBaseUrl: ${{ steps.ansible.output.devSpacesBaseUrl }}
+          description: {{ '${{ parameters.description }}' }}
+          collectionGroup: {{ '${{ parameters.collectionGroup }}' }}
+          collectionName: {{ '${{ parameters.collectionName }}' }}
+          sourceControl: {{ '${{ parameters.sourceControl }}' }}
+          devSpacesBaseUrl: {{ '${{ steps.ansible.output.devSpacesBaseUrl }}' }}
 
     - id: publish
       name: Publish
       action: publish:gitlab
       input:
         allowedHosts:
-          - ${{ parameters.sourceControl }}
-        description: ${{ parameters.description }}
-        repoUrl: ${{ steps.ansible.output.repoUrl }}
+          - {{ '${{ parameters.sourceControl }}' }}
+        description: {{ '${{ parameters.description }}' }}
+        repoUrl: {{ '${{ steps.ansible.output.repoUrl }}' }}
         repoVisibility: 'public'
         defaultBranch: main
 
@@ -114,14 +114,14 @@ spec:
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        repoContentsUrl: {{ '${{ steps.publish.output.repoContentsUrl }}' }}
         catalogInfoPath: '/catalog-info.yaml'
 
   output:
     links:
       - title: Repository
-        url: ${{ steps.publish.output.remoteUrl }}
+        url: {{ '${{ steps.publish.output.remoteUrl }}' }}
 
       - title: Open in catalog
         icon: catalog
-        entityRef: ${{ steps.register.output.entityRef }}
+        entityRef: {{ '${{ steps.register.output.entityRef }}' }}
