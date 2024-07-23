@@ -21,13 +21,6 @@ spec:
         - collectionGroup
         - collectionName
       properties:
-        sourceControl:
-          title: Choose source control option
-          type: string
-          description: Select the source control option
-          default: {{ gitlab_host }}
-          enum:
-            - {{ gitlab_host }}
         repoOwner:
           title: Source code repository organization name or username
           type: string
@@ -81,7 +74,7 @@ spec:
         collectionGroup: {{ '${{ parameters.collectionGroup }}' }}
         collectionName: {{ '${{ parameters.collectionName }}' }}
         applicationType: playbook-project
-        sourceControl: {{ '${{ parameters.sourceControl }}' }}
+        sourceControl: {{ gitlab_host }}
 
     - id: catalogTemplate
       name: Generating the Catalog Info Component
@@ -96,7 +89,7 @@ spec:
           description: {{ '${{ parameters.description }}' }}
           collectionGroup: {{ '${{ parameters.collectionGroup }}' }}
           collectionName: {{ '${{ parameters.collectionName }}' }}
-          sourceControl: {{ '${{ parameters.sourceControl }}' }}
+          sourceControl: {{ gitlab_host }}
           devSpacesBaseUrl: {{ '${{ steps.ansible.output.devSpacesBaseUrl }}' }}
 
     - id: publish
@@ -104,7 +97,7 @@ spec:
       action: publish:gitlab
       input:
         allowedHosts:
-          - {{ '${{ parameters.sourceControl }}' }}
+          - {{ gitlab_host }}
         description: {{ '${{ parameters.description }}' }}
         repoUrl: "{{ '${{ steps.ansible.output.repoUrl }}' }}"
         repoVisibility: 'public'
