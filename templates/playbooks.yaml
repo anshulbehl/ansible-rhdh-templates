@@ -103,11 +103,11 @@ spec:
         repoVisibility: 'public'
         defaultBranch: main
 
-    - id: log publish output
-      name: Parse Repo URL
-      action: debug:log
-      input:
-        extra: {{ '${{ steps.publish.output.repoContentsUrl }}' }}
+    # - id: log publish output
+    #   name: Parse Repo URL
+    #   action: debug:log
+    #   input:
+    #     extra: {{ '${{ steps.publish.output.repoContentsUrl }}' }}
         
     - id: register
       name: Register
